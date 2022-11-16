@@ -9,8 +9,8 @@ fn main() {
         input_text = return_string();
         match input_text.as_str() {
             "1\n" => add_user_to_department(&mut hash),
-            "2\n" => print_department(&mut hash),
-            "3\n" => print_all_departmens(&mut hash),
+            "2\n" => print_department(&hash),
+            "3\n" => print_all_departmens(&hash),
             "4\n" => add_department(&mut hash),
             "5\n" => break,
             _ => continue,
@@ -36,7 +36,7 @@ fn add_user_to_department(hash: &mut HashMap<String, Vec<String>>){
     }
 }
 
-fn print_department(hash: &mut HashMap<String, Vec<String>>){
+fn print_department(hash: &HashMap<String, Vec<String>>){
     clear_screen();
     let department_name: String = write_the_department_name();
     if check_if_the_department_exists(&department_name, hash){
@@ -56,7 +56,7 @@ fn write_the_department_name() -> String{
     department_name
 }
 
-fn check_if_the_department_exists(department_name: &String,hash: &mut HashMap<String, Vec<String>>) -> bool{
+fn check_if_the_department_exists(department_name: &String, hash: &HashMap<String, Vec<String>>) -> bool{
     hash.contains_key(department_name)
 }
 
@@ -69,7 +69,7 @@ fn add_department(hash: &mut HashMap<String, Vec<String>>){
     }
 }
 
-fn print_all_departmens(hash: &mut HashMap<String, Vec<String>>){
+fn print_all_departmens(hash: &HashMap<String, Vec<String>>){
     clear_screen();
     for (key, value) in hash{
         println!("{key} department:");
